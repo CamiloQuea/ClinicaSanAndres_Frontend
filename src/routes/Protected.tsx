@@ -17,6 +17,7 @@ const Protected = ({ children }: IProtected) => {
         const token = Cookies.get("token");
         if (token) {
             setIsAuth(true);
+            
         } else {
             setIsAuth(false);
             navigate("/login");

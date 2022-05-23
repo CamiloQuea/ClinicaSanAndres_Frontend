@@ -10,7 +10,11 @@ import { useTheme } from "../hooks/useTheme";
 import Protected from "../routes/Protected";
 import Sidebar from "../components/Sidebar/Sidebar"
 
-export const Dashboard = () => {
+type Children = {
+    children: JSX.Element;
+}
+
+export const Dashboard =  ( {children}:Children) => {
     const [switchMode] = useTheme();
 
     const [menuState, changeMenuState] = useState(false);
@@ -52,9 +56,9 @@ export const Dashboard = () => {
                         )}
                     </div>
                 </nav>
-                <div className="dark:bg-neutral-800 bg-white flex-grow">
+                <div className="flex w-screen dark:bg-neutral-800 bg-white flex-grow">
                 <Sidebar />
-                
+                {children}
                 </div>
                 
             </div>
