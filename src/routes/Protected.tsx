@@ -19,8 +19,9 @@ const Protected = ({ children }: IProtected) => {
             setIsAuth(true);
             
         } else {
-            setIsAuth(false);
-            navigate("/login");
+           // setIsAuth(false);
+           // navigate("/login");
+           setIsAuth(true);
         }
     }, [])
 

@@ -66,21 +66,21 @@ const sidebarItems = [
 
 const Sidebar = () => {
   return (
-    <div className="w-64 h-full">
-      <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded h-full dark:bg-neutral-900">
+    <div className="md:w-64 w-auto h-full ">
+      <div className=" py-4 px-3 bg-gray-50  h-full dark:bg-neutral-900">
         <div className="mt-3 mb-6">
           <img
-            className="h-24 mx-auto rounded-full"
+            className="h-10 md:h-20 mx-auto rounded-full"
             src="https://i1.sndcdn.com/artworks-FRIqYPtESjPf6jwJ-mEXsUg-t500x500.jpg"
             alt="medic_img"
           />
-          <h1 className="text-white text-center my-2">Usuario</h1>
+          <h1 className="text-white text-center my-2 md:block hidden">Usuario</h1>
         </div>
 
         <div className="space-y-3">
           {sidebarItems.map((group, index) => (
             <div key={index}>
-              <span className="text-gray-500 font-semibold">{group.group}</span>
+              <span className="text-gray-500 font-semibold md:block hidden">{group.group}</span>
               {group.elements.map((el, index) => (
                 <SidebarItem
                   key={index}

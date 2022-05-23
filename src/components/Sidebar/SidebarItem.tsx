@@ -18,7 +18,7 @@ const SidebarItem = ({ icon, name, path }: ISidebarItem) => {
           icon={icon}
           className="w-5 h-5 text-gray-500  dark:text-gray-400  "
         />
-        <span className="ml-3">{name}</span>
+        <span className="ml-3 md:block hidden">{name}</span>
       </a>
     </div>
   );
