@@ -8,7 +8,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { DarkModeButton } from "../components/DarkModeButton";
 import { useTheme } from "../hooks/useTheme";
 import Protected from "../routes/Protected";
-import Sidebar from "../components/Sidebar/Sidebar"
+import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebarr from "../components/Sidebar/Sidebarr"
 
 type Children = {
     children: JSX.Element;
@@ -27,7 +28,7 @@ export const Dashboard =  ( {children}:Children) => {
 
     return (
         <Protected>
-            <div className="dark:bg-neutral-900 bg-white flex flex-col font-roboto h-screen">
+            <div className="dark:bg-neutral-900 bg-white flex flex-col font-roboto w-screen h-screen">
                 <nav className="h-16 dark:bg-neutral-900 bg-white flex dark:border-0 dark:border-neutral-500 border border-neutral-50 shadow-lg p-3 sticky">
                     <nav className="flex-1"></nav>
                     <div className="relative">
@@ -56,7 +57,7 @@ export const Dashboard =  ( {children}:Children) => {
                         )}
                     </div>
                 </nav>
-                <div className="flex w-screen dark:bg-neutral-800 bg-white flex-grow">
+                <div className="flex min-w-full  dark:bg-neutral-800 bg-white flex-grow">
                 <Sidebar />
                 {children}
                 </div>

@@ -1,4 +1,5 @@
 module.exports = {
+  important: true,
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -6,9 +7,11 @@ module.exports = {
     extend: {
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif'] 
-      },
-    },
+      }
+    }
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms"),
+  ],
   darkMode: 'class'
 }

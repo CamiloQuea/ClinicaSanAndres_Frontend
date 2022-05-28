@@ -66,11 +66,11 @@ const sidebarItems = [
 
 const Sidebar = () => {
   return (
-    <div className="md:w-64 w-auto h-full ">
-      <div className=" py-4 px-3 bg-gray-50  h-full dark:bg-neutral-900">
+    <div className="md:w-64 w-20 h-full ">
+      <div className=" py-4 sm:w-auto  px-3 bg-gray-50  h-full dark:bg-neutral-900">
         <div className="mt-3 mb-6">
           <img
-            className="h-10 md:h-20 mx-auto rounded-full"
+            className="sm:h-10 md:h-20 mx-auto rounded-full"
             src="https://i1.sndcdn.com/artworks-FRIqYPtESjPf6jwJ-mEXsUg-t500x500.jpg"
             alt="medic_img"
           />
