@@ -8,18 +8,20 @@ export default function Patients() {
   const [patients, setPatients]: any = useState([]);
   const [isFetched, setIsFetched] = useState(false);
   const [tableHeader, setTableHeader]: any = useState([]);
-  const allowedParmams = ["_id", "allergis", "__v" ]
+  const allowedParmams = ["_id", "allergis", "__v"]
 
   useEffect(() => {
     const tmpArray: any = [];
     axios
       .get(
-        "http://localhost:5000/get-pacientes"
+        "http://localhost:4000/patient"
       )
       .then((res) => {
+
+        console.log(res.data)
         setPatients(res.data);
 
-        Object.keys(res.data[0]).filter((key)=>!allowedParmams.includes(key)).map((el: string) => {
+        Object.keys(res.data[0]).filter((key) => !allowedParmams.includes(key)).map((el: string) => {
           tmpArray.push({
             id: el,
             Header: el,
@@ -38,10 +40,10 @@ export default function Patients() {
 
   return (
     <Dashboard>
-      <div className="h-full w-full flex  justify-center">
-        <div className="w-5/6 rounded-xl mx-4 my-8 dark:bg-neutral-900 shadow-xl">
+      <div className="h-full flex  justify-center min-w-0">
+        <div className="w-5/6 rounded-xl mx-4 my-8 dark:bg-neutral-900 shadow-xl min-w-0">
           {isFetched ? (
-            <Table columnas={tableHeader} dataa={patients} formChild={<PatientForm/>}  />
+            <Table columnas={tableHeader} dataa={patients} formChild={<PatientForm />} />
           ) : (
             <>Loading...</>
           )}

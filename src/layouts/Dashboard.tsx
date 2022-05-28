@@ -28,7 +28,7 @@ export const Dashboard =  ( {children}:Children) => {
 
     return (
         <Protected>
-            <div className="dark:bg-neutral-900 bg-white flex flex-col font-roboto w-screen h-screen">
+            <div className="dark:bg-neutral-900 bg-white flex flex-col font-roboto max-w-screen h-screen">
                 <nav className="h-16 dark:bg-neutral-900 bg-white flex dark:border-0 dark:border-neutral-500 border border-neutral-50 shadow-lg p-3 sticky">
                     <nav className="flex-1"></nav>
                     <div className="relative">
