@@ -106,7 +106,7 @@ const Table = ({columnas, dataa, formChild}:Itable) => {
             <div className="mt-6 mx-auto flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div className="shadow max-w-full  overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div className="shadow max-w-full overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table
                                 className="min-w-full divide-y divide-gray-200"
                                 {...getTableProps()}

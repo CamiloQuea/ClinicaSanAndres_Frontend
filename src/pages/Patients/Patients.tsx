@@ -1,49 +1,112 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Dashboard } from "../../layouts/Dashboard";
-import Table from "../../components/Table/Table";
+
 import PatientForm from "../../components/Forms/PatientForm";
+import { apiConfig } from "../../config/api";
+import Search from "../../components/Datatable/Search"
+import Table from "../../components/Datatable/Table"
+
+
+interface IPatient {
+  namePac: String;
+  fatherSurname: String;
+  motherSurname: String;
+  email: String;
+  phone: String;
+  dni: String;
+  birthday: String;
+  gender: String;
+  allergis: [String];
+  healthInsuranceType: String;
+  Nationality: String;
+}
+
 
 export default function Patients() {
-  const [patients, setPatients]: any = useState([]);
+
   const [isFetched, setIsFetched] = useState(false);
-  const [tableHeader, setTableHeader]: any = useState([]);
-  const allowedParmams = ["_id", "allergis", "__v"]
+
+  const [filterText, setFilterText] = useState("");
+  const [resetPagination, setResetPagination] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     const tmpArray: any = [];
     axios
-      .get(
-        "http://localhost:4000/patient"
-      )
+      .get(`${apiConfig.domain}/get-pacientes`)
       .then((res) => {
 
-        console.log(res.data)
-        setPatients(res.data);
-
-        Object.keys(res.data[0]).filter((key) => !allowedParmams.includes(key)).map((el: string) => {
+        res.data.map((patient: IPatient, index: any) => {
           tmpArray.push({
-            id: el,
-            Header: el,
-            accessor: el,
+            dni: patient.dni,
+            nombres: patient.namePac,
+            apellidos: patient.fatherSurname + " " + patient.motherSurname,
           });
         });
-        setTableHeader(tmpArray);
+
+        setFilteredData(tmpArray);
         setIsFetched(true);
-        console.log(tableHeader)
-        //console.log(res.data)
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const columns = [{ data: "firstName", title: "Nombre" }];
+  const onFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(e.target.value);
+  }
+
+  const columns = [{
+    name: "DNI",
+    selector: (row:any) => row.dni,
+    cell: (row:IPatient) => <div>{row.dni}</div>,
+  }, {
+    name: "Nombre",
+    selector: (row:any) => row.nombres,
+    cell: (row:any) => <div>{row.nombres}</div>,
+  }, {
+    name: "Apellidos",
+    selector: (row:any) => row.apellidos,
+    cell: (row:any) => <div>{row.apellidos}</div>,
+  }, {
+    name: "Acciones",
+    selector: (row:any) => row._id,
+    cell: (row:any) => <div className="text-center">
+      <button  className="bg-red-500 py-2 px-4 text-white font-semibold m-1">Eliminar</button>
+      <button    className="bg-sky-500 py-2 px-4 text-white font-semibold m-1">Ver más</button>
+    </div>
+  }]
+
+  
+  const filteredItems = filteredData.filter((item: any) => {
+    return item.dni && item.dni.toString().includes(filterText);
+  });
+
+  const subHeaderComponent= useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setFilterText("");
+        setResetPagination(!resetPagination);
+      }
+    };
+
+    return (
+      <Search formChild={<PatientForm/>} filterText={filterText} onFilter={onFilter} onClear={handleClear} placeHolder={"Buscar por dni"} />
+    );
+  }, [filterText, resetPagination]);
+
+
+
 
   return (
     <Dashboard>
-      <div className="h-full flex  justify-center min-w-0">
-        <div className="w-5/6 rounded-xl mx-4 my-8 dark:bg-neutral-900 shadow-xl min-w-0">
-          {isFetched ? (
-            <Table columnas={tableHeader} dataa={patients} formChild={<PatientForm />} />
+      <div className="h-full flex  w-full  justify-center min-w-0">
+        <div className="mx-4 my-8 dark:bg-red-900 h-min shadow-xl w-5/6">
+          {isFetched ? (<Table 
+          filteredItems={filteredItems} 
+          columns={columns}
+          subHeaderComponentMemo={subHeaderComponent}
+          />
+            
           ) : (
             <>Loading...</>
           )}

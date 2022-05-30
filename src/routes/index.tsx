@@ -8,7 +8,7 @@ import {
 import { Dashboard } from '../pages/Dashboard';
 import { Login } from '../pages/Login';
 import Main from '../pages/Dashboard/Main'
-import Patients from '../pages/Patients/Patients';
+import Patients from '../pages/Patients/Patients'
 
 export const index = () => {
     return (

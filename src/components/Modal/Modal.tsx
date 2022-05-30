@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 interface IModal {
     children: JSX.Element;
-    isActive: boolean;
     handleModal: Function;
     title: string;
 }
