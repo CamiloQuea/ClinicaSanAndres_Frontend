@@ -100,7 +100,7 @@ export default function Patients() {
   return (
     <Dashboard>
       <div className="h-full flex  w-full  justify-center min-w-0">
-        <div className="mx-4 my-8 dark:bg-red-900 h-min shadow-xl w-5/6">
+        <div className="mx-4 my-8 dark:bg-neutral-900 h-min shadow-xl w-5/6">
           {isFetched ? (<Table 
           filteredItems={filteredItems} 
           columns={columns}

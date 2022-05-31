@@ -10,7 +10,7 @@ const Table = ({ filteredItems, columns, subHeaderComponentMemo }: any) => {
    return (<>
         <DataTable
             fixedHeader
-            title="Pacientes registrados"
+            title="Registros"
             data={filteredItems}
             noHeader={false}
             pagination
